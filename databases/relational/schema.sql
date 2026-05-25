@@ -27,7 +27,29 @@
 --  Apply your schema with:
 --    docker-compose down -v && docker-compose up -d
 -- ============================================================
-
+CREATE TABLE stations (
+    station_id VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    is_interchange_metro BOOLEAN NOT NULL DEFAULT FALSE,
+    is_interchange_national_rail BOOLEAN NOT NULL DEFAULT FALSE,
+    national_rail_station_id VARCHAR(10)
+);
+CREATE TABLE lines (
+    line_id VARCHAR(10) PRIMARY KEY,
+    line_name VARCHAR(50)
+);
+CREATE TABLE station_lines (
+    station_id VARCHAR(10) REFERENCES stations(station_id),
+    line_id VARCHAR(10) REFERENCES lines(line_id),
+    PRIMARY KEY (station_id, line_id)
+);
+CREATE TABLE station_connections (
+    from_station_id VARCHAR(10) REFERENCES stations(station_id),
+    to_station_id VARCHAR(10) REFERENCES stations(station_id),
+    line_id VARCHAR(10) REFERENCES lines(line_id),
+    travel_time_min INT NOT NULL,
+    PRIMARY KEY (from_station_id, to_station_id, line_id)
+);
 
 
 
