@@ -280,12 +280,12 @@ def query_available_seats(
     Return available seats for a national rail journey on a given date.
 
     Args:
-        schedule_id:  e.g. "NR_SCH01"
+        schedule_id:   e.g. "NR_SCH01"
         travel_date:  e.g. "2025-06-01"
         fare_class:   "standard" or "first"
 
     Returns:
-        List of dicts: {seat_id, coach, row, column}
+        List   of dicts: {seat_id, coach, row, column}
     """
     import psycopg2.extras
     
