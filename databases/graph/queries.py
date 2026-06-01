@@ -1,3 +1,4 @@
+from __future__ import annotations
 """
 TransitFlow — Neo4j Graph Database Layer
 =========================================
