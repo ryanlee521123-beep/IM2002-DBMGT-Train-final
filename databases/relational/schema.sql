@@ -154,10 +154,10 @@ CREATE TABLE users (
 
 CREATE TABLE bookings (
     booking_id VARCHAR(20) PRIMARY KEY,
-    user_id VARCHAR(20) REFERENCES users(user_id),
-    schedule_id VARCHAR(20) REFERENCES schedules(schedule_id),
-    origin_station_id VARCHAR(10) REFERENCES stations(station_id),
-    destination_station_id VARCHAR(10) REFERENCES stations(station_id),
+    user_id VARCHAR(20) REFERENCES users(user_id) ON DELETE RESTRICT,
+    schedule_id VARCHAR(20) REFERENCES schedules(schedule_id) ON DELETE RESTRICT,
+    origin_station_id VARCHAR(10) REFERENCES stations(station_id) ON DELETE RESTRICT,
+    destination_station_id VARCHAR(10) REFERENCES stations(station_id) ON DELETE RESTRICT,
     travel_date DATE NOT NULL,
     departure_time TIME,
     ticket_type VARCHAR(20) NOT NULL,
@@ -173,10 +173,10 @@ CREATE TABLE bookings (
 
 CREATE TABLE metro_travel_history (
     trip_id VARCHAR(20) PRIMARY KEY, -- Restored JSON primary key
-    user_id VARCHAR(20) REFERENCES users(user_id),
-    schedule_id VARCHAR(20) REFERENCES schedules(schedule_id),
-    origin_station_id VARCHAR(10) REFERENCES stations(station_id),
-    destination_station_id VARCHAR(10) REFERENCES stations(station_id),
+    user_id VARCHAR(20) REFERENCES users(user_id) ON DELETE RESTRICT,
+    schedule_id VARCHAR(20) REFERENCES schedules(schedule_id) ON DELETE RESTRICT,
+    origin_station_id VARCHAR(10) REFERENCES stations(station_id) ON DELETE RESTRICT,
+    destination_station_id VARCHAR(10) REFERENCES stations(station_id) ON DELETE RESTRICT,
     travel_date DATE NOT NULL,
     ticket_type VARCHAR(20) NOT NULL,
     stops_travelled INT NOT NULL,
